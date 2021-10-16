@@ -7,8 +7,6 @@
 class AntSimulation{
     private:
         std::string title;
-        Map map; //this will be the tile grid
-        //std::vector<tile_view> v;//debugging
         sf::Event sfEvent;
 	    sf::Clock dtClock;
         float dt;

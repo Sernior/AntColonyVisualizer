@@ -2,12 +2,13 @@
 #include "Globals.h"
 #include <cmath> 
 tile::tile(int Index){
+    this->Index = Index;
     this->Position.x = int(Index % gridsizeX);
     this->Position.y = int(Index / gridsizeX);
     this->Wall = false;
     this->Weight = 0;
 }
-tile::tile(){
+tile::tile(){// Index = y * gridsizeX + X
 }
 tile::~tile(){
 }

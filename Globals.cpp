@@ -5,4 +5,5 @@ int GridWidth = 1000; // 1000
 int gridsizeX = 100;  // 100
 int gridsizeY = 100;  // 100
 int gridsize;  //  gridsizeX * gridsizeY
+std::shared_ptr<Map> map(nullptr); // the tile_view grid
 std::shared_ptr<sf::RenderWindow> window(nullptr);

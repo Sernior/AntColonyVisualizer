@@ -8,8 +8,7 @@ void AntSimulation::initWindow(){
 
 AntSimulation::AntSimulation(std::string title){
     gridsize = gridsizeX*gridsizeY;
-
-    map = Map();
+    map = std::make_shared<Map>();
 
     this->title = title;
     this->initWindow();
@@ -30,13 +29,21 @@ void AntSimulation::update(){
         if (event.type == sf::Event::Closed){ // controller will be here depending on the user events we get
             window->close();
         }
+        if (event.type == sf::Event::MouseButtonPressed){
+            if(event.mouseButton.button == sf::Mouse::Left){
+                if(event.mouseButton.x < WindowWidth-GridWidth){
+                    continue; // this is a left mouse click on the menu
+                }
+                printf("%d,", map->PositionToTileIndex(event.mouseButton.x,event.mouseButton.y));
+            }
+        }
     }
 }
 
 void AntSimulation::render(){
     window->clear();
 
-    map.render();
+    map->render();
 
     window->display();
 }

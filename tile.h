@@ -1,12 +1,13 @@
-#include <SFML/Graphics.hpp>
 #ifndef TILE
 #define TILE
+#include <SFML/Graphics.hpp>
 class tile{
     private:
+    public:
+        uint32_t Index;
         sf::Vector2i Position;
         int Weight;
         bool Wall;
-    public:
         tile(int index);
         tile();
         ~tile();

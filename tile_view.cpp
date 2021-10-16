@@ -15,6 +15,7 @@ tile_view::tile_view(int Index)
 {
     DrawTarget = std::make_shared<sf::RectangleShape>();
     auto SpecificTarget = std::dynamic_pointer_cast<sf::RectangleShape>(DrawTarget);
+    this->IntRect = sf::Rect<int>(Position.x*10+(WindowWidth-GridWidth),Position.y*10,10,10);//magic numbers like in the view.
     
     SpecificTarget->setSize(sf::Vector2f(10, 10)); // will change magic numbers
     SpecificTarget->setPosition(((getPosition().x*10)+(WindowWidth-GridWidth)),getPosition().y*10);
@@ -23,3 +24,4 @@ tile_view::tile_view(int Index)
     SpecificTarget->setOutlineThickness(1);
 
 }
+
