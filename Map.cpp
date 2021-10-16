@@ -23,20 +23,11 @@ tile_view Map::IndexToTile(int Index){
     return tilegrid[Index];
 }
 
-int Map::PositionToTileIndex(int x , int y){ // this can be greatly optimized
+int Map::PositionToTileIndex(int x , int y){
 
     int relx = ((int)(x-500)/10);
     int rely = (int)(y/10);
     return rely * gridsizeX + relx;
-    printf("\n%d ,%d \n",relx,rely);
-
-
-    for(int i = 0; i != gridsize; i++){
-        if(tilegrid[i].IntRect.contains(x,y)){
-            return i;
-        }
-    }
-    return -1;
 }
 
 void Map::SetWall(int Index){
