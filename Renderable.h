@@ -2,10 +2,10 @@
 #define RENDERABLE
 #include <SFML/Graphics.hpp>
 #include <memory>
+#include <vector>
 class Renderable{
     public:
-        std::shared_ptr<sf::Drawable> DrawTarget;
-        //sf::Drawable* DrawTarget;
+        std::vector<std::shared_ptr<sf::Drawable>> DrawTarget;
         Renderable();
         ~Renderable();
         void render();

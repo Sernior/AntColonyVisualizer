@@ -7,5 +7,7 @@ Renderable::~Renderable(){
 }
 
 void Renderable::render() {
-    window->draw(*DrawTarget);
+    for (auto& dt : DrawTarget){
+        window->draw(*dt);
+    }
 }

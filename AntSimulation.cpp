@@ -1,4 +1,5 @@
 #include "AntSimulation.h"
+#include "Menu.h"
 #include "Globals.h"
 #include <memory>
 void AntSimulation::initWindow(){
@@ -8,8 +9,12 @@ void AntSimulation::initWindow(){
 
 AntSimulation::AntSimulation(std::string title){
     gridsize = gridsizeX*gridsizeY;
+    font = std::make_shared<sf::Font>();
+    if(!font->loadFromFile("fonts/Dosis-Light.ttf")){
+        printf("Couldn't Load font");
+    }
     map = std::make_shared<Map>();
-
+    menu = std::make_shared<Menu>();
     this->title = title;
     this->initWindow();
 }
@@ -44,6 +49,7 @@ void AntSimulation::render(){
     window->clear();
 
     map->render();
+    menu->render();
 
     window->display();
 }

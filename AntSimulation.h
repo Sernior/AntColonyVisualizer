@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include <string>
 #include "Map.h"
+#include "Menu.h"
 //#include "tile_view.h"//debugging
 class AntSimulation{
     private:
