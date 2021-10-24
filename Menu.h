@@ -5,13 +5,24 @@
 #include "Renderable.h"
 #include <vector>
 #include <memory>
+enum MenuState
+{
+    NothingSet,
+    SettingWalls,
+    SettingWeights,
+    SettingColony,
+    SettingFood
+};
 class Menu : public Renderable
 {
 public:
     Menu();
     ~Menu();
     void render();
+    void AddButton(int x, int y, int width, int height,std::string name);
+    void Notify(int x, int y);
     std::vector<std::shared_ptr<Gui::Button>> buttons;
+    MenuState State;
 };
 
 

@@ -29,14 +29,24 @@ void AntSimulation::updateDt(){
 
 void AntSimulation::update(){
     sf::Event event;
+    sf::Mouse mouse;
+    sf::Vector2i cursorPos = mouse.getPosition();
+    /*Menu buttons positions: */
     while (window->pollEvent(event))
     {
+        /* // can be used for hovering
+        if(cursorPos.x < MenuWidth){
+            if(cursorPos.x >= 10 && cursorPos.x <= 20 && cursorPos.y >= 10 && cursorPos.y <= 20){
+
+            }
+        }*/
         if (event.type == sf::Event::Closed){ // controller will be here depending on the user events we get
             window->close();
         }
         if (event.type == sf::Event::MouseButtonPressed){
             if(event.mouseButton.button == sf::Mouse::Left){
                 if(event.mouseButton.x < WindowWidth-GridWidth){
+                    menu->Notify(event.mouseButton.x,event.mouseButton.y);
                     continue; // this is a left mouse click on the menu
                 }
                 printf("%d,", map->PositionToTileIndex(event.mouseButton.x,event.mouseButton.y));
