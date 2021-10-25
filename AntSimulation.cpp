@@ -30,7 +30,8 @@ void AntSimulation::updateDt(){
 void AntSimulation::update(){
     sf::Event event;
     sf::Mouse mouse;
-    sf::Vector2i cursorPos = mouse.getPosition();
+    sf::Vector2i mousePos = mouse.getPosition(*window);
+    sf::Vector2f relativemousePos = window->mapPixelToCoords(mousePos);
     /*Menu buttons positions: */
     while (window->pollEvent(event))
     {
@@ -43,13 +44,19 @@ void AntSimulation::update(){
         if (event.type == sf::Event::Closed){ // controller will be here depending on the user events we get
             window->close();
         }
+        if (mouse.isButtonPressed(sf::Mouse::Left)){
+            if(mousePos.x > MenuWidth){
+                map->NotifyLeftClick(mousePos.x,mousePos.y);
+            }
+        }
         if (event.type == sf::Event::MouseButtonPressed){
             if(event.mouseButton.button == sf::Mouse::Left){
-                if(event.mouseButton.x < WindowWidth-GridWidth){
+                if(event.mouseButton.x < MenuWidth){
                     menu->NotifyLeftClick(event.mouseButton.x,event.mouseButton.y);
-                    continue; // this is a left mouse click on the menu
+                    continue;
                 }
                 //printf("%d,", map->PositionToTileIndex(event.mouseButton.x,event.mouseButton.y));
+                printf(": %d , %d , %d , %d :",mousePos.x,mousePos.y,event.mouseButton.x,event.mouseButton.y);
                 map->NotifyLeftClick(event.mouseButton.x,event.mouseButton.y);
             }
         }
