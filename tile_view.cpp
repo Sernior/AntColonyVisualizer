@@ -21,12 +21,24 @@ tile_view::tile_view(int Index)
     SpecificTarget->setFillColor(sf::Color::White);
     SpecificTarget->setOutlineColor(sf::Color::Black);
     SpecificTarget->setOutlineThickness(1);
-    /*
-    auto Text = std::make_shared<sf::Text>("0",*font);
-    Text->setCharacterSize(8);
-    Text->setFillColor(sf::Color::Black);
-    Text->setStyle(sf::Text::Bold);
-    Text->setPosition(((getPosition().x*10)+(WindowWidth-GridWidth)),getPosition().y*10);
-    DrawTarget.push_back(Text);*/
-}
 
+}
+void tile_view::SetWall(){
+    auto SpecificTarget = std::dynamic_pointer_cast<sf::RectangleShape>(DrawTarget.front());
+    if(Wall){
+        Wall = false;
+        SpecificTarget->setFillColor(sf::Color::White);
+        return;
+    }
+    Wall = true;
+    SpecificTarget->setFillColor(sf::Color::Black);
+}
+void tile_view::Click(){
+    switch(menu->State){
+        case(MenuState::SettingWalls):
+            SetWall();
+            break;
+        default:
+            return;
+    }
+}

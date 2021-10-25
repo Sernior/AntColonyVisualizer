@@ -31,7 +31,7 @@ void Menu::render(){
 bool containedIn(int x, int y, int startX, int startY, int Width, int Height){
     return x >= startX && x <= startX+Width && y >= startY && y <= startY+Height;
 }
-void Menu::Notify(int x, int y){
+void Menu::NotifyLeftClick(int x, int y){
     if (containedIn(x,y,20,20,40,20)){
         if(buttons[0]->Click()){
             State = MenuState::SettingWalls;

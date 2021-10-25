@@ -41,3 +41,8 @@ void Map::SetWeight(int Index, int Weight){
     tilegrid[Index].Weight = Weight;
 }
 
+void Map::NotifyLeftClick(int x, int y){
+    int tileIndex = PositionToTileIndex(x,y);
+    tilegrid[tileIndex].Click();
+}
+
