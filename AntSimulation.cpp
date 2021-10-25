@@ -57,7 +57,7 @@ void AntSimulation::update(){
                 }
                 //printf("%d,", map->PositionToTileIndex(event.mouseButton.x,event.mouseButton.y));
                 printf(": %d , %d , %d , %d :",mousePos.x,mousePos.y,event.mouseButton.x,event.mouseButton.y);
-                map->NotifyLeftClick(event.mouseButton.x,event.mouseButton.y);
+                //map->NotifyLeftClick(event.mouseButton.x,event.mouseButton.y);
             }
         }
     }
