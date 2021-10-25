@@ -22,9 +22,14 @@ tile_view::tile_view(int Index)
     SpecificTarget->setOutlineColor(sf::Color::Black);
     SpecificTarget->setOutlineThickness(1);
 
+    set_thisCycle = false;
 }
 void tile_view::SetWall(){
     auto SpecificTarget = std::dynamic_pointer_cast<sf::RectangleShape>(DrawTarget.front());
+    if(set_thisCycle){
+        return;
+    }
+    set_thisCycle = true;
     if(Wall){
         Wall = false;
         SpecificTarget->setFillColor(sf::Color::White);

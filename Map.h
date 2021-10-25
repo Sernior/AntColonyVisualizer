@@ -16,5 +16,6 @@ class Map{
         void SetWeight(int Index, int Weight);
         int PositionToTileIndex(int x,int y);
         void NotifyLeftClick(int x, int y);
+        void NotifyLeftRelease();
 };
 #endif

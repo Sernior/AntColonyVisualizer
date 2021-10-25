@@ -7,6 +7,7 @@ class tile_view : public tile , public Renderable
 {
     public:
         sf::Rect<int> IntRect;
+        bool set_thisCycle;
         //sf::RectangleShape rect;
         tile_view();
         tile_view(int Index);

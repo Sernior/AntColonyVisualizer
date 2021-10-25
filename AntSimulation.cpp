@@ -41,6 +41,11 @@ void AntSimulation::update(){
 
             }
         }*/
+        if(sf::Event::MouseButtonReleased){
+            if(event.mouseButton.button == sf::Mouse::Left){
+                map->NotifyLeftRelease();
+            }
+        }
         if (event.type == sf::Event::Closed){ // controller will be here depending on the user events we get
             window->close();
         }
@@ -55,9 +60,7 @@ void AntSimulation::update(){
                     menu->NotifyLeftClick(event.mouseButton.x,event.mouseButton.y);
                     continue;
                 }
-                //printf("%d,", map->PositionToTileIndex(event.mouseButton.x,event.mouseButton.y));
                 printf(": %d , %d , %d , %d :",mousePos.x,mousePos.y,event.mouseButton.x,event.mouseButton.y);
-                //map->NotifyLeftClick(event.mouseButton.x,event.mouseButton.y);
             }
         }
     }

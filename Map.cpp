@@ -45,4 +45,9 @@ void Map::NotifyLeftClick(int x, int y){
     int tileIndex = PositionToTileIndex(x,y);
     tilegrid[tileIndex].Click();
 }
+void Map::NotifyLeftRelease(){
+    for(auto& t : tilegrid){
+        t.set_thisCycle = false;
+    }
+}
 
