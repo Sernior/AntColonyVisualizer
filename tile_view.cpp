@@ -19,7 +19,7 @@ tile_view::tile_view(int Index)
     SpecificTarget->setSize(sf::Vector2f(10, 10)); // will change magic numbers
     SpecificTarget->setPosition(((getPosition().x*10)+(WindowWidth-GridWidth)),getPosition().y*10);
     SpecificTarget->setFillColor(sf::Color::White);
-    SpecificTarget->setOutlineColor(sf::Color::Black);
+    SpecificTarget->setOutlineColor(sf::Color(120,120,120,80));
     SpecificTarget->setOutlineThickness(1);
 
     set_thisCycle = false;

@@ -12,7 +12,7 @@ Menu::Menu()
     SpecificTarget->setFillColor(sf::Color::White);
 
     AddButton(20,20,40,20, "Wall",4);//0
-    AddButton(80,20,40,20,"Clear",0);
+    AddButton(80,20,40,20,"Clear",0);//1
 }
 
 Menu::~Menu() {

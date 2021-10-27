@@ -9,7 +9,8 @@ enum MenuState
 {
     NothingSet,
     SettingWalls,
-    SettingWeights,
+    IncreasingWeights,
+    DecreasingWeights,
     SettingColony,
     SettingFood
 };

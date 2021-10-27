@@ -30,7 +30,6 @@ Gui::Button::~Button() {
 
 bool Gui::Button::Click() {
     auto SpecificTarget = std::dynamic_pointer_cast<sf::RectangleShape>(DrawTarget.front());
-    printf("%d",status);
     if(!status){
         status = true;
         SpecificTarget->setFillColor(sf::Color::Yellow);
