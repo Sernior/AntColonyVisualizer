@@ -36,3 +36,9 @@ void tile::Clear(){
     Wall = false;
     Weight = 0;
 }
+void tile::IncreaseWeight(){
+    if(Weight == 20){
+        return;
+    }
+    Weight++;
+}

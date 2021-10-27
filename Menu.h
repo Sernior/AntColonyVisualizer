@@ -22,6 +22,7 @@ public:
     void render();
     void AddButton(int x, int y, int width, int height,std::string name, int center);
     void NotifyLeftClick(int x, int y);
+    void ResetButtons(std::string exclude);
     std::vector<std::shared_ptr<Gui::Button>> buttons;
     MenuState State;
 };

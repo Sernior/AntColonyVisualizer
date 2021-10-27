@@ -24,7 +24,7 @@ tile_view::tile_view(int Index)
 
     set_thisCycle = false;
 }
-void tile_view::SetWall(){
+void tile_view::SetWall(){//the left mouse button cycle currently only works for walls
     auto SpecificTarget = std::dynamic_pointer_cast<sf::RectangleShape>(DrawTarget.front());
     if(set_thisCycle){
         return;
@@ -43,6 +43,8 @@ void tile_view::Click(){
         case(MenuState::SettingWalls):
             SetWall();
             break;
+        case(MenuState::IncreasingWeights):
+            IncreaseWeight();
         default:
             return;
     }
@@ -50,7 +52,7 @@ void tile_view::Click(){
 
 void tile_view::render(){
     auto SpecificTarget = std::dynamic_pointer_cast<sf::RectangleShape>(DrawTarget.front());
-    SpecificTarget->setFillColor(sf::Color::White);
+    SpecificTarget->setFillColor(WeightColors[Weight]);
     if(Wall){
         SpecificTarget->setFillColor(sf::Color::Black);
         Renderable::render();

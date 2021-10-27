@@ -13,8 +13,9 @@ AntSimulation::AntSimulation(std::string title){ // initialize globals
     if(!font->loadFromFile("fonts/Dosis-Light.ttf")){
         printf("Couldn't Load font");
     }
-    for(int i = 1; i != 21; i++){
-        WeightColors[i] = sf::Color(i*12,i*12,i*12);
+    WeightColors[0] = sf::Color::White;
+    for(int i = 20; i != 0; i--){
+        WeightColors[21-i] = sf::Color(i*12,i*12,i*12);
     }
     map = std::make_shared<Map>();
     menu = std::make_shared<Menu>();

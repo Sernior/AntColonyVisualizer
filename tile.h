@@ -17,6 +17,7 @@ class tile{
         int getWeight();
         bool isWall();
         void Clear();
+        void IncreaseWeight();
         //int to pos -> pos to int
 };
 
