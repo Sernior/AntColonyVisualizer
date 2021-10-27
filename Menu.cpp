@@ -42,7 +42,6 @@ void Menu::NotifyLeftClick(int x, int y){
         }
     }
     if (containedIn(x,y,80,20,40,20)){ //Clear
-        printf("clearning");
         map->ClearTiles();
     }
 }
