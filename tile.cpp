@@ -32,3 +32,7 @@ int tile::getWeight(){
 bool tile::isWall(){
     return this->Wall;
 }
+void tile::Clear(){
+    Wall = false;
+    Weight = 0;
+}

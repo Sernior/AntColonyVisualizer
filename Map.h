@@ -17,5 +17,6 @@ class Map{
         int PositionToTileIndex(int x,int y);
         void NotifyLeftClick(int x, int y);
         void NotifyLeftRelease();
+        void ClearTiles();
 };
 #endif

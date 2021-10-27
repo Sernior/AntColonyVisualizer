@@ -47,3 +47,14 @@ void tile_view::Click(){
             return;
     }
 }
+
+void tile_view::render(){
+    auto SpecificTarget = std::dynamic_pointer_cast<sf::RectangleShape>(DrawTarget.front());
+    SpecificTarget->setFillColor(sf::Color::White);
+    if(Wall){
+        SpecificTarget->setFillColor(sf::Color::Black);
+        Renderable::render();
+        return;
+    }
+    Renderable::render();
+}

@@ -14,5 +14,6 @@ class tile_view : public tile , public Renderable
         ~tile_view();
         void Click();
         void SetWall();
+        void render();
 };
 #endif

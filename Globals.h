@@ -2,6 +2,7 @@
 #define GLOBALS
 #include<memory>
 #include <SFML/Graphics.hpp>
+#include <unordered_map>
 #include "Menu.h"
 #include "Map.h"
 extern int gridsize;
@@ -15,4 +16,5 @@ extern std::shared_ptr<sf::RenderWindow> window;
 extern std::shared_ptr<Map> map;
 extern std::shared_ptr<Menu> menu;
 extern std::shared_ptr<sf::Font> font;
+extern std::unordered_map<int,sf::Color> WeightColors;
 #endif

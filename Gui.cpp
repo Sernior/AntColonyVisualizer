@@ -4,7 +4,7 @@ Gui::Button::Button(){
 
 }
 
-Gui::Button::Button(int x, int y, int width, int height, std::string name) {
+Gui::Button::Button(int x, int y, int width, int height, std::string name, int center) {
     id = name;
     status = false;
 
@@ -17,10 +17,10 @@ Gui::Button::Button(int x, int y, int width, int height, std::string name) {
     SpecificTarget->setOutlineThickness(1);
 
     auto Text = std::make_shared<sf::Text>(name ,*font);
-    Text->setCharacterSize(14);
+    Text->setCharacterSize(19);
     Text->setFillColor(sf::Color::Black);
     Text->setStyle(sf::Text::Bold);
-    Text->setPosition(x+(width*1.3),y);
+    Text->setPosition(x+center,y-2);
     DrawTarget.push_back(Text);
 }
 

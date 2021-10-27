@@ -10,3 +10,4 @@ std::shared_ptr<Menu> menu(nullptr); // the tile_view grid
 std::shared_ptr<Map> map(nullptr); // the tile_view grid
 std::shared_ptr<sf::RenderWindow> window(nullptr);
 std::shared_ptr<sf::Font> font(nullptr);
+std::unordered_map<int,sf::Color> WeightColors;

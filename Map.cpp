@@ -50,4 +50,8 @@ void Map::NotifyLeftRelease(){
         t.set_thisCycle = false;
     }
 }
-
+void Map::ClearTiles(){
+    for(auto& t : tilegrid){
+        t.Clear();
+    }
+}

@@ -19,7 +19,7 @@ class Button : public Renderable{
     bool status;
     bool Click();
     Button();
-    Button(int x, int y, int width, int height, std::string name);
+    Button(int x, int y, int width, int height, std::string name, int center);
     ~Button();
     private:
 

@@ -7,11 +7,14 @@ void AntSimulation::initWindow(){
 }
 
 
-AntSimulation::AntSimulation(std::string title){
+AntSimulation::AntSimulation(std::string title){ // initialize globals
     gridsize = gridsizeX*gridsizeY;
     font = std::make_shared<sf::Font>();
     if(!font->loadFromFile("fonts/Dosis-Light.ttf")){
         printf("Couldn't Load font");
+    }
+    for(int i = 1; i != 21; i++){
+        WeightColors[i] = sf::Color(i*12,i*12,i*12);
     }
     map = std::make_shared<Map>();
     menu = std::make_shared<Menu>();
@@ -50,7 +53,7 @@ void AntSimulation::update(){
             window->close();
         }
         if (mouse.isButtonPressed(sf::Mouse::Left)){
-            if(mousePos.x > MenuWidth){
+            if(mousePos.x > MenuWidth && mousePos.x < WindowWidth && mousePos.y > 0 && mousePos.y < WindowHeight){
                 map->NotifyLeftClick(mousePos.x,mousePos.y);
             }
         }
@@ -60,7 +63,7 @@ void AntSimulation::update(){
                     menu->NotifyLeftClick(event.mouseButton.x,event.mouseButton.y);
                     continue;
                 }
-                printf(": %d , %d , %d , %d :",mousePos.x,mousePos.y,event.mouseButton.x,event.mouseButton.y);
+                //printf(": %d , %d , %d , %d :",mousePos.x,mousePos.y,event.mouseButton.x,event.mouseButton.y);
             }
         }
     }

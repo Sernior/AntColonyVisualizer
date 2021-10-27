@@ -16,6 +16,7 @@ class tile{
         float getDistanceSquared(tile t);
         int getWeight();
         bool isWall();
+        void Clear();
         //int to pos -> pos to int
 };
 

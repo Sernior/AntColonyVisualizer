@@ -19,7 +19,7 @@ public:
     Menu();
     ~Menu();
     void render();
-    void AddButton(int x, int y, int width, int height,std::string name);
+    void AddButton(int x, int y, int width, int height,std::string name, int center);
     void NotifyLeftClick(int x, int y);
     std::vector<std::shared_ptr<Gui::Button>> buttons;
     MenuState State;
