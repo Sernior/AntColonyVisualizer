@@ -28,7 +28,7 @@ void TimeManager::Update(float deltatime) {
         // by the noise of the rendering complexity. Alternatively I could cap the fps at a very low number.
         // certain metrics like food found per nodes that are unrelated to real time could still be useful even if the complexity of the UI is loud.
     }
-    if(Tick>TickDuration){
+    if(Tick>TickDuration){ //only 1 Tick every TickDuration, TickDuration = 1.0f means 1 tick every 1 seconds.
         TickSimulation();
         Tick = 0.0f;
     }
