@@ -3,6 +3,7 @@
 #include "tile_view.h"
 #include <vector>
 #include <SFML/Graphics.hpp>
+#include <random>
 class Map{
     private:
         std::vector<tile_view> tilegrid;
@@ -18,5 +19,6 @@ class Map{
         void NotifyLeftClick(int x, int y);
         void NotifyLeftRelease();
         void ClearTiles();
+        void RandomizeWeights();
 };
 #endif

@@ -42,3 +42,9 @@ void tile::IncreaseWeight(){
     }
     Weight++;
 }
+void tile::DecreaseWeight(){
+    if(Weight == 0){
+        return;
+    }
+    Weight--;
+}

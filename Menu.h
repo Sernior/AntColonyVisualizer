@@ -5,6 +5,10 @@
 #include "Renderable.h"
 #include <vector>
 #include <memory>
+enum MapRenderingState{
+    Rendering,
+    NotRendering
+};
 enum MenuState
 {
     NothingSet,
@@ -25,6 +29,7 @@ public:
     void ResetButtons(std::string exclude);
     std::vector<std::shared_ptr<Gui::Button>> buttons;
     MenuState State;
+    MapRenderingState MapRendering;
 };
 
 

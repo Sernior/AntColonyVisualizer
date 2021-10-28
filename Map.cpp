@@ -1,7 +1,6 @@
 #include "Map.h"
 #include "Globals.h"
 
-
 Map::Map() {
     tilegrid.resize(gridsize);
     for(int i = 0; i != gridsize; i++){
@@ -24,7 +23,7 @@ tile_view Map::IndexToTile(int Index){
 
 int Map::PositionToTileIndex(int x , int y){
 
-    int relx = ((int)(x-500)/10);
+    int relx = ((int)(x-MenuWidth)/10);
     int rely = (int)(y/10);
     return rely * gridsizeX + relx;
 }
@@ -53,5 +52,13 @@ void Map::NotifyLeftRelease(){
 void Map::ClearTiles(){
     for(auto& t : tilegrid){
         t.Clear();
+    }
+}
+void Map::RandomizeWeights(){
+    for(auto& t : tilegrid){
+        std::random_device rd;
+        std::mt19937 gen(rd());
+        std::uniform_int_distribution<> distr(0, 20);
+        t.Weight = distr(gen);
     }
 }

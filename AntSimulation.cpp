@@ -4,6 +4,7 @@
 #include <memory>
 void AntSimulation::initWindow(){
     window = std::make_shared<sf::RenderWindow>(sf::VideoMode(WindowWidth,WindowHeight),this->title);
+    window->setKeyRepeatEnabled(false);
 }
 
 
@@ -19,6 +20,7 @@ AntSimulation::AntSimulation(std::string title){ // initialize globals
     }
     map = std::make_shared<Map>();
     menu = std::make_shared<Menu>();
+    timeManager = std::make_shared<TimeManager>(1.0f);
     this->title = title;
     this->initWindow();
 }
@@ -28,7 +30,8 @@ AntSimulation::~AntSimulation(){
 
 
 void AntSimulation::updateDt(){
-    this->dt = this->dtClock.restart().asSeconds();
+    dt = this->dtClock.restart().asSeconds();
+    timeManager->Update(dt);
 }
 
 void AntSimulation::update(){
@@ -37,7 +40,7 @@ void AntSimulation::update(){
     sf::Vector2i mousePos = mouse.getPosition(*window);
     sf::Vector2f relativemousePos = window->mapPixelToCoords(mousePos);
     /*Menu buttons positions: */
-    while (window->pollEvent(event))
+    if (window->pollEvent(event))
     {
         /* // can be used for hovering
         if(cursorPos.x < MenuWidth){
@@ -50,7 +53,7 @@ void AntSimulation::update(){
                 map->NotifyLeftRelease();
             }
         }
-        if (event.type == sf::Event::Closed){ // controller will be here depending on the user events we get
+        if (event.type == sf::Event::Closed){
             window->close();
         }
         if (mouse.isButtonPressed(sf::Mouse::Left)){
@@ -62,7 +65,6 @@ void AntSimulation::update(){
             if(event.mouseButton.button == sf::Mouse::Left){
                 if(event.mouseButton.x < MenuWidth){
                     menu->NotifyLeftClick(event.mouseButton.x,event.mouseButton.y);
-                    continue;
                 }
                 //printf(": %d , %d , %d , %d :",mousePos.x,mousePos.y,event.mouseButton.x,event.mouseButton.y);
             }
@@ -73,7 +75,9 @@ void AntSimulation::update(){
 void AntSimulation::render(){
     window->clear();
 
-    map->render();
+    if(menu->MapRendering == MapRenderingState::Rendering){
+        map->render();
+    }
     menu->render();
 
     window->display();

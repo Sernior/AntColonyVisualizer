@@ -36,7 +36,6 @@ void tile_view::SetWall(){//the left mouse button cycle currently only works for
         return;
     }
     Wall = true;
-    SpecificTarget->setFillColor(sf::Color::Black);
 }
 void tile_view::Click(){
     switch(menu->State){
@@ -45,6 +44,9 @@ void tile_view::Click(){
             break;
         case(MenuState::IncreasingWeights):
             IncreaseWeight();
+            break;
+        case(MenuState::DecreasingWeights):
+            DecreaseWeight();
         default:
             return;
     }

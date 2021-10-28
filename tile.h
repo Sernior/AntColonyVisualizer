@@ -8,6 +8,8 @@ class tile{
         sf::Vector2i Position;
         int Weight;
         bool Wall;
+        bool isColony;
+        bool isFoodSource;
         tile(int index);
         tile();
         ~tile();
@@ -18,6 +20,7 @@ class tile{
         bool isWall();
         void Clear();
         void IncreaseWeight();
+        void DecreaseWeight();
         //int to pos -> pos to int
 };
 
