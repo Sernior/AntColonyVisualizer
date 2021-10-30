@@ -18,6 +18,8 @@ Menu::Menu()
     AddButton(195,20,135,20,"Decrease Weight",1);//3
     AddButton(20,60,155,20, "Randomize Weights",1);//4
     AddButton(20,240,95,20,"Render Map",1);//5
+    AddButton(20,100,105,20,"Make Colony",1);//6
+    AddButton(155,100,95,20,"Make Food",1);
 }
 
 Menu::~Menu() {
@@ -77,5 +79,19 @@ void Menu::NotifyLeftClick(int x, int y){
     }
     if (containedIn(x,y,20,240,95,20)){//Render Map
         MapRendering = !buttons[5]->Click()? MapRenderingState::Rendering : MapRenderingState::NotRendering; 
+    }
+    if (containedIn(x,y,20,100,105,20)){
+        State = MenuState::NothingSet;
+        if(buttons[6]->Click()){
+            ResetButtons("Make Colony");
+            State = MenuState::SettingColony;
+        }
+    }
+    if (containedIn(x,y,155,100,95,20)){
+        State = MenuState::NothingSet;
+        if(buttons[7]->Click()){
+            ResetButtons("Make Food");
+            State = MenuState::SettingFood;
+        }
     }
 }

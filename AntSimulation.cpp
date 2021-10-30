@@ -20,7 +20,7 @@ AntSimulation::AntSimulation(std::string title){ // initialize globals
     }
     map = std::make_shared<Map>();
     menu = std::make_shared<Menu>();
-    timeManager = std::make_shared<TimeManager>(1.0f);
+    timeManager = std::make_shared<TimeManager>(0.1f);
     this->title = title;
     this->initWindow();
 }

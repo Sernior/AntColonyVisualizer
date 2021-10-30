@@ -25,17 +25,39 @@ tile_view::tile_view(int Index)
     set_thisCycle = false;
 }
 void tile_view::SetWall(){//the left mouse button cycle currently only works for walls
-    auto SpecificTarget = std::dynamic_pointer_cast<sf::RectangleShape>(DrawTarget.front());
     if(set_thisCycle){
         return;
     }
     set_thisCycle = true;
     if(Wall){
         Wall = false;
-        SpecificTarget->setFillColor(sf::Color::White);
         return;
     }
     Wall = true;
+    isColony = false;
+    isFoodSource = false;
+}
+void tile_view::SetColony(){
+    if(set_thisCycle){
+        return;
+    }
+    set_thisCycle = true;
+    isColony = !isColony;
+    if(isColony){
+        Wall = false;
+        isFoodSource = false;
+    }
+}
+void tile_view::SetFoodSource(){
+    if(set_thisCycle){
+        return;
+    }
+    set_thisCycle = true;
+    isFoodSource = !isFoodSource;
+    if(isFoodSource){
+        Wall = false;
+        isColony = false;
+    }
 }
 void tile_view::Click(){
     switch(menu->State){
@@ -47,6 +69,13 @@ void tile_view::Click(){
             break;
         case(MenuState::DecreasingWeights):
             DecreaseWeight();
+            break;
+        case(MenuState::SettingColony):
+            SetColony();
+            break;
+        case(MenuState::SettingFood):
+            SetFoodSource();
+            break;
         default:
             return;
     }
@@ -55,6 +84,16 @@ void tile_view::Click(){
 void tile_view::render(){
     auto SpecificTarget = std::dynamic_pointer_cast<sf::RectangleShape>(DrawTarget.front());
     SpecificTarget->setFillColor(WeightColors[Weight]);
+    if(isFoodSource){
+        SpecificTarget->setFillColor(sf::Color(0,255,0,100));
+        Renderable::render();
+        return;
+    }
+    if(isColony){
+        SpecificTarget->setFillColor(sf::Color(255,0,0,100));
+        Renderable::render();
+        return;
+    }
     if(Wall){
         SpecificTarget->setFillColor(sf::Color::Black);
         Renderable::render();

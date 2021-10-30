@@ -35,6 +35,8 @@ bool tile::isWall(){
 void tile::Clear(){
     Wall = false;
     Weight = 0;
+    isFoodSource = false;
+    isColony = false;
 }
 void tile::IncreaseWeight(){
     if(Weight == 20){
