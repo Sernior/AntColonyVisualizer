@@ -6,6 +6,7 @@ TimeManager::TimeManager(float TickDuration) {
     Tick = 0.0f;
     FPSTimer = 0.0f;
     FramesPerSecond = 0;
+    totalTicks = 0;
     FiveSecondsTicker = 0.0f;
 }
 
@@ -33,16 +34,16 @@ void TimeManager::Update(float deltatime) {
         fiveSecondsTick();
     }
     if(Tick>TickDuration){ //only 1 Tick every TickDuration, TickDuration = 1.0f means 1 tick every 1 seconds.
+        totalTicks++;
         TickSimulation();
         Tick = 0.0f;
     }
 }
 void TimeManager::fiveSecondsTick() const{
-    printf(" 5sec tick! ");
+    //printf(" 5sec tick! ");
 }
 void TimeManager::oneSecondTick() const{
     //menu->console.pushMessage(std::string("tick :: ").append(std::to_string(FiveSecondsTicker)));
 }
 void TimeManager::TickSimulation() const{
-    
 }

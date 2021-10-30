@@ -10,6 +10,7 @@ private:
     float FPSTimer;
     float FiveSecondsTicker;
 public:
+    uint64_t totalTicks;
     TimeManager(float TickDuration);
     ~TimeManager();
     void SetTickDuration(float newDuration);

@@ -101,4 +101,14 @@ void Menu::NotifyLeftClick(int x, int y){
             State = MenuState::SettingFood;
         }
     }
+    if (containedIn(x,y,20,660,85,20)){
+        if(Simulationstate == SimulationState::Simulating)return;
+        Simulationstate = SimulationState::Simulating;
+        console.pushMessage(std::string("Starting the simulation at Tick ").append(std::to_string(timeManager->totalTicks)));
+    }
+    if (containedIn(x,y,155,660,135,20)){
+        if(Simulationstate == SimulationState::NotSimulating)return;
+        Simulationstate = SimulationState::NotSimulating;
+        console.pushMessage(std::string("Ending the simulation at Tick ").append(std::to_string(timeManager->totalTicks)));
+    }
 }
