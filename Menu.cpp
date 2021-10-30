@@ -5,10 +5,12 @@ Menu::Menu()
 {
     State = MenuState::NothingSet;
     MapRendering = MapRenderingState::Rendering;
+    Simulationstate = SimulationState::NotSimulating;
+    console = Gui::Console();
     //this is the definition of the background of the menu
     auto SpecificTarget = std::make_shared<sf::RectangleShape>();
     DrawTarget.push_back(SpecificTarget);
-    SpecificTarget->setSize(sf::Vector2f(MenuWidth, WindowHeight));
+    SpecificTarget->setSize(sf::Vector2f(MenuWidth, WindowHeight-200));
     SpecificTarget->setPosition(0,0);
     SpecificTarget->setFillColor(sf::Color::White);
 
@@ -19,7 +21,9 @@ Menu::Menu()
     AddButton(20,60,155,20, "Randomize Weights",1);//4
     AddButton(20,240,95,20,"Render Map",1);//5
     AddButton(20,100,105,20,"Make Colony",1);//6
-    AddButton(155,100,95,20,"Make Food",1);
+    AddButton(155,100,95,20,"Make Food",1);//7
+    AddButton(20,660,85,20,"Simulating",1);//8
+    AddButton(155,660,135,20,"Stop Simulating",1);//9
 }
 
 Menu::~Menu() {
@@ -34,6 +38,7 @@ void Menu::render(){
     for (auto& b : buttons){
         b->render();
     }
+    console.render();
     //the rest of the menu's components rendering is done here.
 }
 bool containedIn(int x, int y, int startX, int startY, int Width, int Height){//utility function to determine where the click was
@@ -58,6 +63,8 @@ void Menu::NotifyLeftClick(int x, int y){
         }
     }
     if (containedIn(x,y,20,200,40,20)){ //Clear
+        Colony.clear();
+        FoodSources.clear();
         map->ClearTiles();
     }
     if (containedIn(x,y,80,20,95,20)){ //IncreaseWeight

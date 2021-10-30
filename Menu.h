@@ -5,6 +5,10 @@
 #include "Renderable.h"
 #include <vector>
 #include <memory>
+enum SimulationState{
+    Simulating,
+    NotSimulating
+};
 enum MapRenderingState{
     Rendering,
     NotRendering
@@ -30,6 +34,8 @@ public:
     std::vector<std::shared_ptr<Gui::Button>> buttons;
     MenuState State;
     MapRenderingState MapRendering;
+    SimulationState Simulationstate;
+    Gui::Console console;
 };
 
 

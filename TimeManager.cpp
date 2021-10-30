@@ -1,5 +1,5 @@
 #include "TimeManager.h"
-
+#include "Globals.h"
 
 TimeManager::TimeManager(float TickDuration) {
     this->TickDuration = TickDuration;
@@ -24,10 +24,12 @@ void TimeManager::Update(float deltatime) {
     Tick+=deltatime;
     if(FPSTimer>1.0f){
         FPSTimer = 0.0f;
+        menu->console.pushMessage(std::string("FPS :: ").append(std::to_string(FramesPerSecond)));
         FramesPerSecond = 0;
         oneSecondTick();
     }
     if(FiveSecondsTicker>5.0f){
+        FiveSecondsTicker = 0.0f;
         fiveSecondsTick();
     }
     if(Tick>TickDuration){ //only 1 Tick every TickDuration, TickDuration = 1.0f means 1 tick every 1 seconds.
@@ -36,10 +38,10 @@ void TimeManager::Update(float deltatime) {
     }
 }
 void TimeManager::fiveSecondsTick() const{
-
+    printf(" 5sec tick! ");
 }
 void TimeManager::oneSecondTick() const{
-
+    //menu->console.pushMessage(std::string("tick :: ").append(std::to_string(FiveSecondsTicker)));
 }
 void TimeManager::TickSimulation() const{
     

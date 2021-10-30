@@ -7,7 +7,6 @@
 class Map{
     private:
         std::vector<tile_view> tilegrid;
-        //std::unordered_map<sf::Vector2i,int> RelativeTilePositionToIndex;
         tile_view IndexToTile(int index);
     public:
         Map();

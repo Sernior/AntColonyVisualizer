@@ -46,7 +46,10 @@ void tile_view::SetColony(){
     if(isColony){
         Wall = false;
         isFoodSource = false;
+        Colony.push_back(Index);
+        return;
     }
+    remove(Colony.begin(),Colony.end(),Index);
 }
 void tile_view::SetFoodSource(){
     if(set_thisCycle){
@@ -57,7 +60,10 @@ void tile_view::SetFoodSource(){
     if(isFoodSource){
         Wall = false;
         isColony = false;
+        FoodSources.push_back(Index);
+        return;
     }
+    remove(FoodSources.begin(),FoodSources.end(),Index);
 }
 void tile_view::Click(){
     switch(menu->State){
