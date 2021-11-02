@@ -21,12 +21,12 @@ void Dijkstra::init(int Ant, int Food){
 }
 bool Dijkstra::Step() {
     CostNode curr = priorityQ.top();
-    map->NotifyTileFound(curr.index);
     priorityQ.pop();
     while(Updated.count(curr.index)!=0 && Updated[curr.index].cost!=curr.cost){
         curr = priorityQ.top();
         priorityQ.pop();
     }
+    map->NotifyTileFound(curr.index);
     printf("%d ",curr.index);
     menu->console.pushMessage(std::string("examining : ").append(std::to_string(curr.index)));
     if(curr.index == Dest.index){
