@@ -8,6 +8,8 @@ TimeManager::TimeManager(float TickDuration) {
     FramesPerSecond = 0;
     totalTicks = 0;
     FiveSecondsTicker = 0.0f;
+    CurrentFood = -1;
+    CurrentAnt = -1;
 }
 
 TimeManager::~TimeManager() {
@@ -25,9 +27,8 @@ void TimeManager::Update(float deltatime) {
     Tick+=deltatime;
     if(FPSTimer>1.0f){
         FPSTimer = 0.0f;
-        menu->console.pushMessage(std::string("FPS :: ").append(std::to_string(FramesPerSecond)));
-        FramesPerSecond = 0;
         oneSecondTick();
+        FramesPerSecond = 0;
     }
     if(FiveSecondsTicker>5.0f){
         FiveSecondsTicker = 0.0f;
@@ -43,7 +44,32 @@ void TimeManager::fiveSecondsTick() const{
     //printf(" 5sec tick! ");
 }
 void TimeManager::oneSecondTick() const{
-    //menu->console.pushMessage(std::string("tick :: ").append(std::to_string(FiveSecondsTicker)));
+    //menu->console.pushMessage(std::string("FPS :: ").append(std::to_string(FramesPerSecond)));
 }
-void TimeManager::TickSimulation() const{
+void TimeManager::TickSimulation(){
+    if(menu->Simulationstate == SimulationState::Simulating){
+        if (CurrentAnt == -1 || CurrentFood == -1)
+        {
+            std::random_device rd;
+            std::mt19937 gen(rd());
+            std::uniform_int_distribution<> distr(0, FoodSources.size()-1);
+            CurrentFood = FoodSources[distr(gen)];
+            std::random_device rd1;
+            std::mt19937 gen1(rd1());
+            std::uniform_int_distribution<> distr1(0, Colony.size()-1);
+            CurrentAnt = Colony[distr1(gen1)];
+            d.init(CurrentAnt,CurrentFood);
+        }
+        if(d.Step()){
+            printf("found!!!");
+            menu->console.pushMessage("FOUND!");
+            menu->Simulationstate = SimulationState::NotSimulating;
+        }
+        //menu->console.pushMessage(std::to_string(CurrentAnt).append(" ").append(std::to_string(CurrentFood)));
+        //SIMULATION STEP
+    }
+    else{
+        CurrentAnt = -1;
+        CurrentFood = -1;
+    }
 }

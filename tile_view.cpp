@@ -90,6 +90,11 @@ void tile_view::Click(){
 void tile_view::render(){
     auto SpecificTarget = std::dynamic_pointer_cast<sf::RectangleShape>(DrawTarget.front());
     SpecificTarget->setFillColor(WeightColors[Weight]);
+    if(map->isFound(Index)){
+        SpecificTarget->setFillColor(sf::Color(255,0,255,0));
+        Renderable::render();
+        return;
+    }
     if(isFoodSource){
         SpecificTarget->setFillColor(sf::Color(0,255,0,100));
         Renderable::render();

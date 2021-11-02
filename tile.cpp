@@ -50,3 +50,19 @@ void tile::DecreaseWeight(){
     }
     Weight--;
 }
+std::vector<int> tile::Adj4(){
+    std::vector<int> result;
+    if(Position.x+1 <= 99 && Position.x+1 >=0){
+        result.push_back(map->RelativePositionToTileIndex(this->Position.x+1,this->Position.y));
+    }
+    if(Position.x-1 <= 99 && Position.x-1 >=0){
+        result.push_back(map->RelativePositionToTileIndex(this->Position.x-1,this->Position.y));
+    }
+    if(Position.y+1 <= 99 && Position.y+1 >=0){
+        result.push_back(map->RelativePositionToTileIndex(this->Position.x,this->Position.y+1));
+    }
+    if(Position.y-1 <= 99 && Position.y-1 >=0){
+        result.push_back(map->RelativePositionToTileIndex(this->Position.x,this->Position.y-1));
+    }
+    return result;
+}

@@ -11,7 +11,6 @@ class AntSimulation{
 	    sf::Clock dtClock;
         float dt;
         void initWindow();
-
     public:
         AntSimulation(std::string title);
         ~AntSimulation();// may be needed later to restart the simulation and not leak memory

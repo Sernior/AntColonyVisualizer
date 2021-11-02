@@ -63,6 +63,7 @@ void Menu::NotifyLeftClick(int x, int y){
         }
     }
     if (containedIn(x,y,20,200,40,20)){ //Clear
+        Simulationstate = SimulationState::NotSimulating;
         Colony.clear();
         FoodSources.clear();
         map->ClearTiles();
@@ -103,6 +104,7 @@ void Menu::NotifyLeftClick(int x, int y){
     }
     if (containedIn(x,y,20,660,85,20)){
         if(Simulationstate == SimulationState::Simulating)return;
+        if(FoodSources.empty() || Colony.empty()){console.pushMessage("Can't start the simulation without a food source and a colony.");return;}
         Simulationstate = SimulationState::Simulating;
         console.pushMessage(std::string("Starting the simulation at Tick ").append(std::to_string(timeManager->totalTicks)));
     }

@@ -1,10 +1,11 @@
 #ifndef TILE
 #define TILE
 #include <SFML/Graphics.hpp>
+#include <vector>
 class tile{
     private:
     public:
-        uint32_t Index;
+        int Index;
         sf::Vector2i Position;
         int Weight;
         bool Wall;
@@ -21,6 +22,7 @@ class tile{
         void Clear();
         void IncreaseWeight();
         void DecreaseWeight();
+        std::vector<int> Adj4();
         //int to pos -> pos to int
 };
 

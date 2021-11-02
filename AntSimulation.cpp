@@ -2,6 +2,7 @@
 #include "Menu.h"
 #include "Globals.h"
 #include <memory>
+#include <random>
 void AntSimulation::initWindow(){
     window = std::make_shared<sf::RenderWindow>(sf::VideoMode(WindowWidth,WindowHeight),this->title);
     window->setKeyRepeatEnabled(false);

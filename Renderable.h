@@ -8,7 +8,7 @@ class Renderable{
         std::vector<std::shared_ptr<sf::Drawable>> DrawTarget;
         Renderable();
         ~Renderable();
-        void render();
+        void virtual render();
 };
 
 

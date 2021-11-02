@@ -15,8 +15,9 @@ enum State
     StateFocused
 };
 class Console: public Renderable{
-    public:
+    private:
     std::deque<std::string> messages;
+    public:
     Console();
     ~Console();
     void pushMessage(std::string message);
