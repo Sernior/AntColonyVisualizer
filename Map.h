@@ -9,10 +9,11 @@ class Map{
     private:
         std::vector<tile_view> tilegrid;
         std::unordered_map<int,bool> found;
-        tile_view IndexToTile(int index);
+        std::unordered_map<int,bool> ispath;
     public:
         Map();
         ~Map();
+        tile_view IndexToTile(int index);
         void render();
         void SetWall(int Index);
         void SetWeight(int Index, int Weight);
@@ -26,6 +27,10 @@ class Map{
         void RandomizeWeights();
         std::vector<int> Adj4(int index);
         int GetWeight(int index);
+        bool isWall(int index);
         bool isFound(int index);
+        bool isPath(int index);
+        void NotifyPath(int index);
+        void NotifyPathFound();
 };
 #endif

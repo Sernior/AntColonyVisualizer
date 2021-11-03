@@ -7,7 +7,8 @@
 #include <memory>
 enum SimulationState{
     Simulating,
-    NotSimulating
+    NotSimulating,
+    LoopSimulation
 };
 enum MapRenderingState{
     Rendering,

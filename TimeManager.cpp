@@ -47,7 +47,7 @@ void TimeManager::oneSecondTick() const{
     //menu->console.pushMessage(std::string("FPS :: ").append(std::to_string(FramesPerSecond)));
 }
 void TimeManager::TickSimulation(){
-    if(menu->Simulationstate == SimulationState::Simulating){
+    if(menu->Simulationstate == SimulationState::Simulating || menu->Simulationstate == SimulationState::LoopSimulation){
         if (CurrentAnt == -1 || CurrentFood == -1)
         {
             std::random_device rd;
@@ -58,18 +58,24 @@ void TimeManager::TickSimulation(){
             std::mt19937 gen1(rd1());
             std::uniform_int_distribution<> distr1(0, Colony.size()-1);
             CurrentAnt = Colony[distr1(gen1)];
+            d.Clear();
             d.init(CurrentAnt,CurrentFood);
+            map->NotifyPathFound();
         }
         if(d.Step()){
-            printf("found!!!");
             menu->console.pushMessage("FOUND!");
-            menu->Simulationstate = SimulationState::NotSimulating;
+            d.RenderPath();
+            CurrentAnt = -1;
+            CurrentFood = -1;
+            if(menu->Simulationstate == SimulationState::Simulating){
+                 menu->Simulationstate = SimulationState::NotSimulating;
+            }
         }
-        //menu->console.pushMessage(std::to_string(CurrentAnt).append(" ").append(std::to_string(CurrentFood)));
-        //SIMULATION STEP
     }
-    else{
-        CurrentAnt = -1;
-        CurrentFood = -1;
-    }
+}
+void TimeManager::clear(){
+    d.Clear();
+}
+int TimeManager::getTick() const{
+    return totalTicks;
 }

@@ -24,6 +24,7 @@ Menu::Menu()
     AddButton(155,100,95,20,"Make Food",1);//7
     AddButton(20,660,85,20,"Simulating",1);//8
     AddButton(155,660,135,20,"Stop Simulating",1);//9
+    AddButton(330,660,135,20,"Loop Simulation",1);//10
 }
 
 Menu::~Menu() {
@@ -67,6 +68,7 @@ void Menu::NotifyLeftClick(int x, int y){
         Colony.clear();
         FoodSources.clear();
         map->ClearTiles();
+        timeManager->clear();
     }
     if (containedIn(x,y,80,20,95,20)){ //IncreaseWeight
         State = MenuState::NothingSet;
@@ -112,5 +114,11 @@ void Menu::NotifyLeftClick(int x, int y){
         if(Simulationstate == SimulationState::NotSimulating)return;
         Simulationstate = SimulationState::NotSimulating;
         console.pushMessage(std::string("Ending the simulation at Tick ").append(std::to_string(timeManager->totalTicks)));
+    }
+    if (containedIn(x,y,330,660,135,20)){
+        if(Simulationstate == SimulationState::LoopSimulation)return;
+        if(FoodSources.empty() || Colony.empty()){console.pushMessage("Can't start the simulation without a food source and a colony.");return;}
+        Simulationstate = SimulationState::LoopSimulation;
+        console.pushMessage(std::string("Looping simulation "));
     }
 }

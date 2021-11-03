@@ -50,6 +50,8 @@ void tile_view::SetColony(){
         return;
     }
     remove(Colony.begin(),Colony.end(),Index);
+    Colony[Index] = isColony;
+
 }
 void tile_view::SetFoodSource(){
     if(set_thisCycle){
@@ -64,6 +66,7 @@ void tile_view::SetFoodSource(){
         return;
     }
     remove(FoodSources.begin(),FoodSources.end(),Index);
+    FoodSources[Index] = isFoodSource;
 }
 void tile_view::Click(){
     switch(menu->State){
@@ -90,11 +93,6 @@ void tile_view::Click(){
 void tile_view::render(){
     auto SpecificTarget = std::dynamic_pointer_cast<sf::RectangleShape>(DrawTarget.front());
     SpecificTarget->setFillColor(WeightColors[Weight]);
-    if(map->isFound(Index)){
-        SpecificTarget->setFillColor(sf::Color::Magenta);
-        Renderable::render();
-        return;
-    }
     if(isFoodSource){
         SpecificTarget->setFillColor(sf::Color(0,255,0,100));
         Renderable::render();
@@ -107,6 +105,16 @@ void tile_view::render(){
     }
     if(Wall){
         SpecificTarget->setFillColor(sf::Color::Black);
+        Renderable::render();
+        return;
+    }
+    if(map->isPath(Index)){
+        SpecificTarget->setFillColor(sf::Color::Cyan);
+        Renderable::render();
+        return;
+    }
+    if(map->isFound(Index)){
+        SpecificTarget->setFillColor(sf::Color::Magenta);
         Renderable::render();
         return;
     }

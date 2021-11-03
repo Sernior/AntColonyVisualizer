@@ -6,6 +6,7 @@ Map::Map() {
     for(int i = 0; i != gridsize; i++){
         tilegrid[i] = tile_view(i);
         found[i]=false;
+        ispath[i]=false;
     }
 }
 
@@ -49,6 +50,7 @@ void Map::SetWeight(int Index, int Weight){
 }
 
 void Map::NotifyLeftClick(int x, int y){
+    if (menu->MapRendering == MapRenderingState::NotRendering)return;
     int tileIndex = PositionToTileIndex(x,y);
     tilegrid[tileIndex].Click();
 }
@@ -59,6 +61,7 @@ void Map::NotifyLeftRelease(){
 }
 void Map::ClearTiles(){
     found.clear();
+    ispath.clear();
     for(auto& t : tilegrid){
         t.Clear();
     }
@@ -82,4 +85,17 @@ void Map::NotifyTileFound(int index){
 }
 bool Map::isFound(int index){
     return found[index];
+}
+bool Map::isPath(int index){
+    return ispath[index];
+}
+bool Map::isWall(int index){
+    return IndexToTile(index).isWall();
+}
+void Map::NotifyPath(int index){
+    ispath[index]=true;
+}
+void Map::NotifyPathFound(){
+    ispath.clear();
+    found.clear();
 }

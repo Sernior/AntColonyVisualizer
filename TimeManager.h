@@ -7,7 +7,7 @@ class TimeManager
 private:
     float TickDuration;
     float Tick;
-    uint32_t FramesPerSecond;
+    int FramesPerSecond;
     float FPSTimer;
     float FiveSecondsTicker;
     int CurrentFood;
@@ -22,6 +22,8 @@ public:
     void TickSimulation();
     void fiveSecondsTick() const;
     void oneSecondTick() const;
+    int getTick() const;
+    void clear();
 };
 
 #endif
