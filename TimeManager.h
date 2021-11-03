@@ -24,6 +24,8 @@ public:
     void oneSecondTick() const;
     int getTick() const;
     void clear();
+    bool isAnt(int Index) const;
+    bool isFood(int Index) const;
 };
 
 #endif

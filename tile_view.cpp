@@ -93,6 +93,44 @@ void tile_view::Click(){
 void tile_view::render(){
     auto SpecificTarget = std::dynamic_pointer_cast<sf::RectangleShape>(DrawTarget.front());
     SpecificTarget->setFillColor(WeightColors[Weight]);
+    if(timeManager->isFood(Index)){
+        SpecificTarget->setFillColor(sf::Color(0,255,0,100));
+        Renderable::render();
+        return;
+    }
+    if(timeManager->isAnt(Index)){
+        SpecificTarget->setFillColor(sf::Color(255,0,0,100));
+        Renderable::render();
+        return;
+    }
+    if(menu->Simulationstate == SimulationState::Simulating || menu->Simulationstate == SimulationState::LoopSimulation){
+        if(map->isPath(Index)){
+            SpecificTarget->setFillColor(sf::Color::Cyan);
+            Renderable::render();
+            return;
+        }
+        if(map->isFound(Index)){
+            SpecificTarget->setFillColor(sf::Color::Magenta);
+            Renderable::render();
+            return;
+        }
+        if(Wall){
+            SpecificTarget->setFillColor(sf::Color::Black);
+            Renderable::render();
+            return;
+        }
+        Renderable::render();
+    }
+    if(map->isPath(Index)){
+        SpecificTarget->setFillColor(sf::Color::Cyan);
+        Renderable::render();
+        return;
+    }
+    if(map->isFound(Index)){
+        SpecificTarget->setFillColor(sf::Color::Magenta);
+        Renderable::render();
+        return;
+    }
     if(isFoodSource){
         SpecificTarget->setFillColor(sf::Color(0,255,0,100));
         Renderable::render();
@@ -105,16 +143,6 @@ void tile_view::render(){
     }
     if(Wall){
         SpecificTarget->setFillColor(sf::Color::Black);
-        Renderable::render();
-        return;
-    }
-    if(map->isPath(Index)){
-        SpecificTarget->setFillColor(sf::Color::Cyan);
-        Renderable::render();
-        return;
-    }
-    if(map->isFound(Index)){
-        SpecificTarget->setFillColor(sf::Color::Magenta);
         Renderable::render();
         return;
     }

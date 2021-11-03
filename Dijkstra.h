@@ -11,8 +11,8 @@ private:
     std::priority_queue<CostNode> priorityQ;
     CostNode Source;
     CostNode Dest;
-    bool inited;
 public:
+    bool inited;
     Dijkstra();
     ~Dijkstra();
     bool isInit();

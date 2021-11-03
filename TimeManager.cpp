@@ -48,7 +48,7 @@ void TimeManager::oneSecondTick() const{
 }
 void TimeManager::TickSimulation(){
     if(menu->Simulationstate == SimulationState::Simulating || menu->Simulationstate == SimulationState::LoopSimulation){
-        if (CurrentAnt == -1 || CurrentFood == -1)
+        if (!d.isInit())
         {
             std::random_device rd;
             std::mt19937 gen(rd());
@@ -65,8 +65,7 @@ void TimeManager::TickSimulation(){
         if(d.Step()){
             menu->console.pushMessage("FOUND!");
             d.RenderPath();
-            CurrentAnt = -1;
-            CurrentFood = -1;
+            d.inited = false;
             if(menu->Simulationstate == SimulationState::Simulating){
                  menu->Simulationstate = SimulationState::NotSimulating;
             }
@@ -75,7 +74,15 @@ void TimeManager::TickSimulation(){
 }
 void TimeManager::clear(){
     d.Clear();
+    CurrentAnt=-1;
+    CurrentFood=-1;
 }
 int TimeManager::getTick() const{
     return totalTicks;
+}
+bool TimeManager::isAnt(int Index) const{
+    return Index == CurrentAnt;
+}
+bool TimeManager::isFood(int Index) const{
+    return Index == CurrentFood;
 }
