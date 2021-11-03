@@ -14,7 +14,7 @@ private:
     int CurrentAnt;
     Dijkstra d;
 public:
-    uint64_t totalTicks;
+    int totalTicks;
     TimeManager(float TickDuration);
     ~TimeManager();
     void SetTickDuration(float newDuration);
